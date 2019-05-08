@@ -8,6 +8,9 @@ const axios = require('axios')
 module.exports = {
   getSearch: (req, res) => {
 
+    console.log(req.query)
+    res.send("OK")
+
     // get the search genre     
 
     // https://www.themoviedb.org/account/signup

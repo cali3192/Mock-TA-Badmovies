@@ -12,6 +12,7 @@ var apiHelpers = require('./helpers/apiHelpers.js');
 
 //Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // Due to express, when you load the page, it doesn't make a get request to '/', it simply serves up the dist folder
 app.use(express.static(__dirname + '/../client/dist'));

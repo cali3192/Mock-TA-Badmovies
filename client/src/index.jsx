@@ -18,8 +18,13 @@ class App extends React.Component {
     // you might have to do something important here!
   }
 
-  getMovies() {
+  getMovies(id) {
     // make an axios request to your server on the GET SEARCH endpoint
+    console.log("This is the id were going to search", id)
+    let data = JSON.stringify(id)
+    axios.get('/movies/search', {params : {id : data}})    
+    .then()
+    //set state with movies 
 
     // make axios request from react side to db api with genre in an order
   }
@@ -45,7 +50,7 @@ class App extends React.Component {
         <header className="navbar"><h1>Bad Movies</h1></header> 
         
         <div className="main">
-          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves}/>
+          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies = {this.getMovies}/>
           <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
         </div>
       </div>
