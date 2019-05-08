@@ -1,5 +1,6 @@
 const movieModel = require('../models/movieModel.js');
 const apiHelpers = require('../helpers/apiHelpers.js');
+const morgan = require('morgan')
 
 //Return requests to the client
 module.exports = {
