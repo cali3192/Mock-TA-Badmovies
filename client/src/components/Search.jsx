@@ -7,11 +7,21 @@ class Search extends React.Component {
     this.state = {
       genres: []
     };
+    this.getGenres = this.getGenres.bind(this)
+  }
+
+  componentDidMount() {
+    this.getGenres();
   }
   getGenres() {
     //make an axios request in this component to get the list of genres from your endpoint GET GENRES
-    Axios.get('/genres')
-    .then((data) => console.log('got the genres in Search.jsx', data))
+    Axios.get('movies/genres')
+    .then((data) => {
+      this.setState({
+        genres: data.data
+      })
+    })
+
   }
 
   render() {
@@ -24,9 +34,9 @@ class Search extends React.Component {
         {/* How can you tell which option has been selected from here? */}
 
         <select>
-          <option value="theway">The Way</option>
-          <option value="thisway">This Way</option>
-          <option value="thatway">That Way</option>
+          {this.state.genres.map(({id, name}) => {
+            return <option key={id}>{name}</option>
+          })}
         </select>
         <br/><br/>
 

@@ -20,6 +20,8 @@ class App extends React.Component {
 
   getMovies() {
     // make an axios request to your server on the GET SEARCH endpoint
+
+    // make axios request from react side to db api with genre in an order
   }
 
   saveMovie() {
