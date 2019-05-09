@@ -12,40 +12,11 @@ var apiHelpers = require('./helpers/apiHelpers.js');
 
 //Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Due to express, when you load the page, it doesn't make a get request to '/', it simply serves up the dist folder
 app.use(express.static(__dirname + '/../client/dist'));
 
-
-// //OPTION 1: Use regular routes
-
-// app.get('/genres', function(req, res) {
-//   // make an axios request to get the official list of genres from themoviedb
-  
-//   // use this endpoint. you will need your API key from signup: https://api.themoviedb.org/3/genre/movie/list
-
-//   // send back
-// });
-
-// app.get('/search', function(req, res) {
-//   // use this endpoint to search for movies by genres (using API key): https://api.themoviedb.org/3/discover/movie
-
-//   // and sort them by votes (worst first) using the search parameters in themoviedb API
-// });
-
-
-// app.post('/save', function(req, res) {
-
-//   //save movie as favorite
-
-// });
-
-// app.post('/delete', function(req, res) {
-
-//   //remove movie from favorites
-
-// });
 
 
 //OPTION 2: Use Express Router
@@ -60,6 +31,6 @@ const movieRoutes = require('./routes/movieRoutes.js');
 app.use('/movies', movieRoutes);
 
 
-app.listen(3000, function() {
+app.listen(3000, function () {
   console.log('listening on port 3000!');
 });
