@@ -15,29 +15,36 @@ class Movies extends React.Component {
   render() {
     return (
       <ul className="movies">
-        {console.log('TESTING ON MOVIES REACT COMPONENT => \n this.props.movies', this.props.movies[0].original_title)}
+
+
+
+
 
 
         {this.props.movies.map((movie) => {
-          return <li className="movie_item">
-            <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} />
-            <div className="movie_description">
-              <h2>{movie.original_title}</h2>
-              <section className="movie_details">
-                <div className="movie_year">
-                  <span className="title">Year</span>
-                  <span>{'' + movie.release_date}</span>
-                  <span>{movie.release_date.split('-')[0]}</span>
-                </div>
-                <div className="movie_rating">
-                  <span className="title">Popularity</span>
-                  <span>{movie.popularity}</span>
-                </div>
-              </section >
-            </div >
-          </li >
-        })
-        }
+          if (!movie.poster_path) {
+            movie.poster_path = '/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg'
+          }
+
+          return (
+            <li key={movie.id} className="movie_item" >
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} />
+              <div className="movie_description">
+                <h2>{movie.original_title}</h2>
+                <section className="movie_details">
+                  <div className="movie_year">
+                    <span className="title">Year</span>
+                    <span>{movie.release_date}</span>
+                  </div>
+                  <div className="movie_rating">
+                    <span className="title">Rating</span>
+                    <span>{movie.popularity}</span>
+                  </div>
+                </section>
+              </div>
+            </li>)
+        })}
+
 
 
 

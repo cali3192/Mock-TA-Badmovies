@@ -16,8 +16,12 @@ class App extends React.Component {
       showFaves: false,
     };
 
+    this.getMovies = this.getMovies.bind(this)
+
     // you might have to do something important here!
   }
+
+
 
   getMovies(id) {
     // make an axios request to your server on the GET SEARCH endpoint
@@ -46,6 +50,10 @@ class App extends React.Component {
     this.setState({
       showFaves: !this.state.showFaves
     });
+  }
+
+  componentDidMount() {
+    this.getMovies({ id: 12, movie: 'Adventure' })
   }
 
   render() {
