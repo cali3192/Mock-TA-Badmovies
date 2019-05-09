@@ -16,11 +16,6 @@ class Movies extends React.Component {
     return (
       <ul className="movies">
 
-
-
-
-
-
         {this.props.movies.map((movie) => {
           if (!movie.poster_path) {
             movie.poster_path = '/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg'
@@ -34,20 +29,16 @@ class Movies extends React.Component {
                 <section className="movie_details">
                   <div className="movie_year">
                     <span className="title">Year</span>
-                    <span>{movie.release_date}</span>
+                    <span>{`${movie.release_date}`.split('-')[0]}</span>
                   </div>
                   <div className="movie_rating">
                     <span className="title">Rating</span>
-                    <span>{movie.popularity}</span>
+                    <span>{Math.ceil(movie.popularity)}</span>
                   </div>
                 </section>
               </div>
             </li>)
         })}
-
-
-
-
 
       </ul >
     );
