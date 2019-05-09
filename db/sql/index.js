@@ -8,3 +8,4 @@ connection.connect((err) => {
   console.log('mySql db connected')
 })
 
+exports.db = connection

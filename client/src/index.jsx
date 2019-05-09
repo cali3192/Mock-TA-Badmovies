@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       movies: [{ deway: "movies" }],
       // movies: [],
-      favorites: [{ deway: "favorites" }],
+      favorites: [],
       showFaves: false,
     };
 
@@ -33,12 +33,16 @@ class App extends React.Component {
         this.setState({ movies: data.data })
       })
     //set state with movies 
+    this.saveMovie = this.saveMovie.bind(this)
 
     // make axios request from react side to db api with genre in an order
   }
 
-  saveMovie() {
+  saveMovie(movie) {
+    this.setState({ favorites: movie });
     // same as above but do something diff
+    axios.post('/movies/save', { movie })
+      .then(() => { console.log("MOVIE SAVED TO DB") })
   }
 
   deleteMovie() {
@@ -62,7 +66,7 @@ class App extends React.Component {
         <header className="navbar"><h1>Bad Movies</h1></header>
         <div className="main">
           <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies={this.getMovies} />
-          <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves} />
+          <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves} saveMovie={this.saveMovie} />
         </div>
       </div>
     );

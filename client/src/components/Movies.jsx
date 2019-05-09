@@ -4,6 +4,11 @@ class Movies extends React.Component {
   constructor(props) {
     super(props)
 
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(movie) {
+    this.props.saveMovie(movie)
   }
 
   // Make an onClick for each list item. If the movies shown is the search results, 
@@ -16,13 +21,13 @@ class Movies extends React.Component {
     return (
       <ul className="movies">
 
-        {this.props.movies.map((movie) => {
+        {this.props.movies.map((movie, index) => {
           if (!movie.poster_path) {
             movie.poster_path = '/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg'
           }
 
           return (
-            <li key={movie.id} className="movie_item" >
+            <li key={movie} onClick={e => { this.handleClick(movie) }} className="movie_item" >
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} />
               <div className="movie_description">
                 <h2>{movie.original_title}</h2>

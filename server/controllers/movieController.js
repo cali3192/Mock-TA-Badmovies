@@ -2,6 +2,7 @@ const movieModel = require('../models/movieModel.js');
 const apiHelpers = require('../helpers/apiHelpers.js');
 const { API_KEY } = require('../../config')
 const axios = require('axios')
+const { db } = require('../../db/sql/index.js')
 // const morgan = require('morgan')
 
 //Return requests to the client
@@ -41,6 +42,8 @@ module.exports = {
       })
   },
   saveMovie: (req, res) => {
+    console.log(req.body)
+    //db.query()
 
   },
   deleteMovie: (req, res) => {
