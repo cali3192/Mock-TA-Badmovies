@@ -3,15 +3,23 @@ const apiHelpers = require('../helpers/apiHelpers.js');
 const { API_KEY } = require('../../config')
 const axios = require('axios')
 const { db } = require('../../db/sql/index.js')
+const { connection } = require('../../db/sql/index.js')
 // const morgan = require('morgan')
 
 //Return requests to the client
 module.exports = {
   getSearch: (req, res) => {
 
-    console.log('controllers getSearch', req.query) // but query is an empty object
+    // console.log('controllers getSearch', req.query) 
 
     let { id, genre } = req.query
+
+    // let query = connection.query('INSERT INTO movies (id, img_path, popularity, release_date, title) SET ? ', req.body, (err, result) => {
+    //   console.log(err, result)
+    // })
+
+
+    
 
     // get the search genre     
 
@@ -42,8 +50,24 @@ module.exports = {
       })
   },
   saveMovie: (req, res) => {
-    console.log(req.body)
-    //db.query()
+    console.log('controllers saveMovie req.body => ', req.body)
+    let { id, poster_path, popularity, release_date, title } = req.body.movie
+    // let {id} = req.body.movie
+    // console.log('\n\n\n\n IDDDDD => ', id)
+    console.log(`\n\n\n\n ${release_date.split('-')[0]} \n\n\n`)
+    release_date = release_date.split('-')[0]
+
+    // db.query()
+    db.query('INSERT INTO movies (id, img_path, popularity, release_date, title) VALUES (?,?,?,?,?)', ([id, poster_path, popularity, release_date, title]), (err, result) => {
+      console.log('\n\n\n\n\n\n\ err in saveMove in controllers => ', err, '\n\n result =>', result)
+    })
+
+
+    // db.query('INSERT INTO movies (id, img_path, popularity, release_date, title) VALUES (?,?,?,?,?)', (id, poster_path, popularity, release_date, title), (err, result) => {
+    //   console.log('\n\n\n\n\n\n\ err in saveMove in controllers => ', err, '\n\n result =>', result)
+    // })
+
+    // console.log('controllers folder saveMovie', req.query) 
 
   },
   deleteMovie: (req, res) => {
