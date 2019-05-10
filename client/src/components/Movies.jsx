@@ -27,7 +27,7 @@ class Movies extends React.Component {
           }
 
           return (
-            <li key={movie} onClick={e => { this.handleClick(movie) }} className="movie_item" >
+            <li key={index} onClick={e => { this.handleClick(movie) }} className="movie_item" >
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} />
               <div className="movie_description">
                 <h2>{movie.original_title}</h2>

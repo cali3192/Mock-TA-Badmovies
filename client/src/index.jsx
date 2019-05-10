@@ -17,15 +17,19 @@ class App extends React.Component {
     };
 
     this.getMovies = this.getMovies.bind(this)
-
-    // you might have to do something important here!
+    this.saveMovie = this.saveMovie.bind(this)
+    this.deleteMovie = this.deleteMovie.bind(this)
   }
 
-
+  
+  handleClick(e) {
+    e.preventDefault()
+    this.props.getFavorites(this.state.id)
+  }
 
   getMovies(id) {
     // make an axios request to your server on the GET SEARCH endpoint
-    console.log("This is the id were going to search", id)
+    // console.log("This is the id were going to search", id)
 
     axios.get('/movies/search', { params: id })
       .then(data => {
@@ -54,6 +58,17 @@ class App extends React.Component {
     this.setState({
       showFaves: !this.state.showFaves
     });
+  }
+
+  getFavorites() {
+    // make request to the db
+    // TODO: 
+    Axios.get('movies/getFavorites')
+      .then((data) => {
+        this.setState({
+          favorites: data.data
+        })
+      })
   }
 
   componentDidMount() {
